@@ -1,0 +1,40 @@
+.bottom-content{
+  height: 80vh;
+  display: grid;
+  align-content: end;
+  text-align: left;
+}
+ .head{
+ font-size: 25px;
+ font-weight:600;
+ margin-bottom: 10px;
+}
+.description p{
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+.btn-con{
+  margin: 5px 0;
+}
+.btn{
+  width: 100%;
+ padding: 10px 0;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  outline: none;
+  cursor: pointer;
+}
+
+.register-btn{
+  background-color: rgb(127, 9, 237);
+  color: white;
+  font-weight: 400;
+}
+.login-btn{
+  background-color: rgb(211, 177, 243);
+  color: black;
+  font-weight: 500;
+}

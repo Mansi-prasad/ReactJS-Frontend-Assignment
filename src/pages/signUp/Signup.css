@@ -1,0 +1,58 @@
+.bottom-container { 
+  position: absolute;
+  bottom: 28px;
+  left: 0;
+  right: 0; 
+  padding: 0 20px; 
+}
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: rgb(118, 33, 246);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-group {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+legend {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 0 6px;
+  margin-left: 10px;
+  color: rgb(147, 46, 241)
+}
+
+.required {
+  color: red;
+  margin-left: 3px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding:7px 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: transparent;
+}
+
+.agency{
+  margin: 10px 0;
+}
+.radio-options{
+  margin-top: 10px;
+  display: flex;
+  gap: 15px;
+}
