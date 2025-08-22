@@ -1,5 +1,4 @@
-import React from "react";
-
+import "./InputField.css"
 const InputField = ({
   label,
   name,
@@ -11,7 +10,7 @@ const InputField = ({
 }) => {
   return (
     <fieldset className="form-group">
-      <legend>
+      <legend className="label">
         {label} {required && <span className="required">*</span>}
       </legend>
       <input
@@ -21,6 +20,7 @@ const InputField = ({
         placeholder={placeholder}
         onChange={onChange}
         required={required}
+        className="input-fields"
       />
     </fieldset>
   );

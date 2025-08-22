@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import "./SignUp.css";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import InputField from "../../components/InputField/InputField";
 const SignUp = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    phone: "",
+    companyName: "",
+    agency: "",
+  });
+  const [errors, setErrors] = useState({
     fullName: "",
     email: "",
     password: "",
@@ -22,40 +29,87 @@ const SignUp = () => {
   };
   const validate = () => {
     const { fullName, email, password, phone, companyName, agency } = userData;
-    if (!fullName || !email || !password || !phone || !companyName || !agency) {
-      toast.error("Please fill all the required field.");
-      return false;
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      toast.error("Invalid email.");
-      return false;
-    }
-    if (password.length < 8) {
-      toast.error("Password must be at least 8 characters long.");
-      return false;
+    let tempErrors = {
+      fullName: "",
+      email: "",
+      password: "",
+      phone: "",
+      companyName: "",
+      agency: "",
+    };
+    let valid = true;
+    if (!fullName) {
+      tempErrors.fullName = "Please enter your full name.";
+      valid = false;
     }
 
-    if (!/^\d{10}$/.test(phone)) {
-      toast.error("Phone number must be 10 digits.");
-      return false;
+    if (!phone) {
+      tempErrors.phone = "Please enter your phone number.";
+      valid = false;
+    } else if (!/^\d{10}$/.test(phone)) {
+      tempErrors.phone = "Phone number must be 10 digits.";
+      valid = false;
     }
-    return true;
+
+    if (!email) {
+      tempErrors.email = "Please enter your email.";
+      valid = false;
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        tempErrors.email = "Invalid email.";
+        valid = false;
+      }
+    }
+
+    if (!password) {
+      tempErrors.password = "Please enter your password.";
+      valid = false;
+    } else if (password.length < 8) {
+      tempErrors.password = "Password must be at least 8 characters long.";
+      valid = false;
+    }
+
+    if (!companyName) {
+      tempErrors.companyName = "Please enter your company name.";
+      valid = false;
+    }
+
+    if (!agency) {
+      tempErrors.agency = "Please select if you are an agency.";
+      valid = false;
+    }
+    setErrors(tempErrors);
+    return valid;
   };
+
+  // handle register
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validate()) return;
     const User = JSON.parse(localStorage.getItem("users")) || {};
     if (User[userData.email]) {
-      toast.error("Email Already exists.");
+      setErrors((prev) => ({ ...prev, email: "Email already exists." }));
+      return;
     }
     // save the user
     User[userData.email] = userData;
     localStorage.setItem("users", JSON.stringify(User));
     localStorage.setItem("currentUser", userData.email);
-    toast.success("Account created successfully!");
+
     navigate("/profile");
+
+    // reset form
     setUserData({
+      fullName: "",
+      email: "",
+      password: "",
+      phone: "",
+      companyName: "",
+      agency: "",
+    });
+
+    setErrors({
       fullName: "",
       email: "",
       password: "",
@@ -67,13 +121,12 @@ const SignUp = () => {
   return (
     <div className="container">
       <div className="head">
-        <h1 className="title">
+        <p className="title">
           Create your <br /> PopX account
-        </h1>
+        </p>
       </div>
       <div className="form-container">
         <form onSubmit={handleSubmit}>
-
           <InputField
             label="Full Name"
             name="fullName"
@@ -83,7 +136,7 @@ const SignUp = () => {
             required
             onChange={handleChange}
           />
-
+          {errors.fullName && <p className="error">{errors.fullName}</p>}
           <InputField
             label="Phone number"
             name="phone"
@@ -93,7 +146,7 @@ const SignUp = () => {
             required
             onChange={handleChange}
           />
-
+          {errors.phone && <p className="error">{errors.phone}</p>}
           <InputField
             label="Email address"
             name="email"
@@ -103,7 +156,7 @@ const SignUp = () => {
             required
             onChange={handleChange}
           />
-
+          {errors.email && <p className="error">{errors.email}</p>}
           <InputField
             label="Password"
             name="password"
@@ -113,7 +166,7 @@ const SignUp = () => {
             required
             onChange={handleChange}
           />
-
+          {errors.password && <p className="error">{errors.password}</p>}
           <InputField
             label="Company name"
             name="companyName"
@@ -123,6 +176,8 @@ const SignUp = () => {
             required
             onChange={handleChange}
           />
+          {errors.companyName && <p className="error">{errors.companyName}</p>}
+
           <div className="agency">
             <label>
               Are you an Agency? <span className="required">*</span>
@@ -153,6 +208,7 @@ const SignUp = () => {
                 No
               </label>
             </div>
+            {errors.agency && <p className="error">{errors.agency}</p>}
           </div>
           <div className="bottom-container">
             <button className="submit-button">Create Account</button>

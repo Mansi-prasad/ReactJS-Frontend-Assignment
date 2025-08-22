@@ -5,11 +5,9 @@ import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
 import Layout from "./pages/Layout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 function App() {
   return (
     <>
-      <ToastContainer />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />} />

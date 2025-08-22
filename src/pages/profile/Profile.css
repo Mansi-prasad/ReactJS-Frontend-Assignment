@@ -1,44 +1,89 @@
 
 .profile-top{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: white;
-  padding: 20px;
-  font-size: 20px;
+  position: absolute;   
+  top: 0;
+  left: 0;
+  width: 100%;         
+  background: #fff;   
+  padding: 18px 16px;   
+  box-sizing: border-box;
+  border-bottom: 1px solid #ddd; 
   font-weight: 600;
+  color: rgb(57, 57, 57);
+  font-size: 18px;
 }
 .profile-img{
+  position: relative;
   border-radius: 50%;
-  height: 70px;
-  width: 70px;
+  height: 60px;
+  width: 60px;
+}
+.profile-img img{
+  width: 100%;
+  height: 100%;
+  object-fit:contain;       
+  display: block;
+  border-radius: 50%;
+}
+.profile-img .camera-wrapper{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: rgb(91, 52, 244); 
+  border-radius: 50%;
+  width: 24px;              
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.profile-img .camera-wrapper svg{
+  width: 14px;             
+  height: 14px;
+  color: #fff; 
+}
+.profile-name{
+  font-weight: 700;
+}
+.profile-email{
+  font-weight: 500;
 }
 .profile-middle{
-  padding: 20px; 
+  margin-top: 60px;
 }
 .profile-data{
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  gap: 20px;
   margin-bottom: 20px;
 }
-.profile-data p{
-  color: rgb(79, 78, 78);
+.profile-desc{
+  font-size: 13px;
+  font-weight: 400;
 }
-.profile-bottom{
-  position: absolute;
-  bottom: 20px;
-  width: 100%;
+.profile-data p{
+  color: rgb(69, 69, 69);
 }
 .dashed-line {
   border: none;
   border-top: 1px dashed #999;
-  margin: 0; 
+  width: 100%;    
+  position: absolute;
+  left: 0;
+  z-index: 5;       
 }
 
-.bottom-line {
-  margin-bottom: 20px;
+/* First line at middle */
+.first-line {
+  top: 35vh;       
 }
+
+/* Second line at bottom of container */
+.second-line {
+  bottom: 35px; 
+}
+
 .logout-btn{
   border: none;
   background-color: rgb(238, 7, 7);
@@ -48,4 +93,10 @@
   font-weight: 500;
   border-radius: 10px;
   cursor: pointer;
+} 
+
+@media (max-width: 768px) {
+  .first-line {
+  top: 26vh;       
+  }
 }

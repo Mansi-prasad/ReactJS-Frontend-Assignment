@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import { useNavigate } from "react-router-dom";
+import { FaCamera } from "react-icons/fa";
 const Profile = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -31,27 +32,29 @@ const Profile = () => {
         <div className="profile-data">
           <div className="profile-img">
             <img
-              src="/profile-img.jpg"
+              src="/profile-img.png"
               alt="profile-img"
               className="profile-img"
             />
+            <div className="camera-wrapper">
+              <FaCamera />
+            </div>
           </div>
           <div className="profile-info">
-            <p>{user?.fullName}</p>
-            <p>{user?.email}</p>
+            <p className="profile-name">{user?.fullName}</p>
+            <p className="profile-email">{user?.email}</p>
           </div>
         </div>
         <div className="profile-data">
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id
-            exercitationem minus consequuntur est nostrum blanditiis ratione
-            itaque labore doloremque neque?
+          <p className="profile-desc">
+            Lorem ipsum dolor, sit amet sd consectetur adipisicing elit. Id
+            exercitationem df minus s cons fd equuntur est nostrum sf blanditiis as
           </p>
         </div>
       </div>
-      <hr className="dashed-line" />
+      <hr className="dashed-line first-line" />
       <div className="profile-bottom">
-        <hr className="dashed-line bottom-line" />
+        <hr className="dashed-line second-line" />
       </div>
     </div>
   );

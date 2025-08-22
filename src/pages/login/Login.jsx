@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import InputField from "../../components/InputField/InputField";
 const Login = () => {
@@ -9,29 +8,47 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLoginData((prev) => ({ ...prev, [name]: value }));
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const { email, password } = loginData;
-    if (!email || !password) {
-      toast.error("Please enter email and password.");
-      return;
+    let valid = true;
+    let tempErrors = { email: "", password: "" };
+
+    if (!email) {
+      tempErrors.email = "Please enter your email.";
+      valid = false;
     }
+
+    if (!password) {
+      tempErrors.password = "Please enter your password.";
+      valid = false;
+    }
+
     const user = JSON.parse(localStorage.getItem("users")) || {};
     const userCheck = user[email];
-    if (!userCheck) {
-      toast.error("User not found.Please Register");
-      return;
+
+    if (email && !userCheck) {
+      tempErrors.email = "User not found. Please register.";
+      valid = false;
     }
-    if (userCheck.password !== password) {
-      toast.error("Incorrect password.");
-      return;
+    if (userCheck && password && userCheck.password !== password) {
+      tempErrors.password = "Incorrect password.";
+      valid = false;
     }
+    setErrors(tempErrors);
+    if (!valid) return;
+
     localStorage.setItem("currentUser", email);
-    toast.success("Login successfully!");
     navigate("/profile");
   };
   return (
@@ -48,7 +65,6 @@ const Login = () => {
       </div>
       <div className="form-container">
         <form onSubmit={handleSubmit}>
-          
           <InputField
             label="Email address"
             name="email"
@@ -58,6 +74,7 @@ const Login = () => {
             required
             onChange={handleChange}
           />
+          {errors.email && <p className="error">{errors.email}</p>}
           <InputField
             label="Password"
             name="password"
@@ -67,6 +84,7 @@ const Login = () => {
             required
             onChange={handleChange}
           />
+          {errors.password && <p className="error">{errors.password}</p>}
           <div className="btn-container">
             <button className="loginbtn">Login</button>
           </div>

@@ -29,12 +29,14 @@
 }
 
 .register-btn{
-  background-color: rgb(127, 9, 237);
+  background-color:  rgb(91, 52, 244);
   color: white;
   font-weight: 400;
+  font-size: 14px;
 }
 .login-btn{
   background-color: rgb(211, 177, 243);
   color: black;
   font-weight: 500;
+  font-size: 14px;
 }

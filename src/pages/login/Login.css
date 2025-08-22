@@ -4,18 +4,18 @@
   font-size: 16px;
   padding-right: 45px;
 }
-.legend{
-  font-size: 18px;
-}
+
 .loginbtn{
    width: 100%;
   padding: 10px;
   font-size: 14px;
   font-weight: 600;
-  /* background-color: rgb(136, 29, 235); */
   background-color: rgb(159, 159, 159);
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+.loginbtn:hover{
+  background-color: rgb(91, 52, 244);
 }
