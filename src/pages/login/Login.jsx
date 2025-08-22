@@ -60,7 +60,7 @@ const Login = () => {
       </div>
       <div className="description">
         <p>
-          Lorem ipsum dolor sit amet cons tetur, adipisicing elit doloremque
+          Lorem ipsum dolor sit amet cons tetur, adipisicing elit 
         </p>
       </div>
       <div className="form-container">

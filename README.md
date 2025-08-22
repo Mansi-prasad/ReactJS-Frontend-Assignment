@@ -59,3 +59,4 @@ Then Open your browser and navigate to `http://localhost:5173`
 
 
 ## Live Link
+https://react-js-frontend-assignment-j46w.vercel.app/
